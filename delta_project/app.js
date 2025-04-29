@@ -20,7 +20,7 @@ const LocalStrategy= require("passport-local");
 const User= require("./models/user.js")
 
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+
 const dbUrl=process.env.ATLASDB_URL;
 
 main()
@@ -69,6 +69,10 @@ const sessionOptions={
 };
 
 
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", userRouter);
+
  app.get("/",(req,res)=>{    
      res.send("hii i am root");
  });
@@ -90,25 +94,11 @@ app.use((req,res,next)=>{
     next();
 });
 
-// app.get("/demoUser",async(req, res)=>{
-//     let fakeUser = new User({
-//         email: "sjsjsj@c.com",
-//         username: "delta-user"
-//     });
-//     let registeredUser= await User.register(fakeUser, "helloworld");
-//     res.send(registeredUser);
 
 
-// });
 
 
-app.use("/listings", listingRouter);
-app.use("/listings/:id/reviews", reviewRouter);
-app.use("/", userRouter);
 
-// app.all('*', (req, res, next) => {
-//     next(new ExpressError(404, "Page not Found!"));
-// });
 
 
 app.use((err, req, res, next) => {
