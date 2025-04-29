@@ -69,12 +69,10 @@ const sessionOptions={
 };
 
 
-app.use("/listings", listingRouter);
-app.use("/listings/:id/reviews", reviewRouter);
-app.use("/", userRouter);
+
 
  app.get("/",(req,res)=>{    
-     res.send("hii i am root");
+     res.render("/listings");
  });
 
 app.use(session(sessionOptions));
@@ -95,7 +93,9 @@ app.use((req,res,next)=>{
 });
 
 
-
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", userRouter);
 
 
 
