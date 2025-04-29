@@ -20,7 +20,6 @@ const LocalStrategy= require("passport-local");
 const User= require("./models/user.js")
 
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const dbUrl=process.env.ATLASDB_URL;
 
 main()
@@ -69,9 +68,9 @@ const sessionOptions={
 };
 
 
-// app.get("/",(req,res)=>{
-//     res.send("hii i am root");
-// });
+app.get("/",(req,res)=>{
+    res.redirect("/listings");
+});
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -106,9 +105,7 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-// app.all('*', (req, res, next) => {
-//     next(new ExpressError(404, "Page not Found!"));
-// });
+
 
 
 app.use((err, req, res, next) => {
