@@ -72,7 +72,7 @@ const sessionOptions={
 
 
  app.get("/",(req,res)=>{    
-     res.render("/listings/index.js");
+     res.send("hii i am uday");
  });
 
 app.use(session(sessionOptions));
