@@ -69,9 +69,9 @@ const sessionOptions={
 };
 
 
-// app.get("/",(req,res)=>{
-//     res.send("hii i am root");
-// });
+ app.get("/",(req,res)=>{    
+     res.send("hii i am root");
+ });
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -106,9 +106,9 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-// app.all('*', (req, res, next) => {
-//     next(new ExpressError(404, "Page not Found!"));
-// });
+app.all('*', (req, res, next) => {
+    next(new ExpressError(404, "Page not Found!"));
+});
 
 
 app.use((err, req, res, next) => {
